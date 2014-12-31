@@ -17,12 +17,12 @@
 }
 
 - (IBAction)hello:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hi, iOS!"
-                                                    message: @"Sorry, I'm too late..."
-                                                   delegate: self
-                                          cancelButtonTitle: @"That's OK."
-                                          otherButtonTitles: nil];
-    [alert show];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle: @"Sorry, I'm too late..."
+                                                       delegate: self
+                                              cancelButtonTitle: @"That's OK."
+                                         destructiveButtonTitle: nil
+                                              otherButtonTitles: nil];
+    [sheet showInView:self.view];
 }
 
 - (IBAction)ask:(id)sender {
@@ -30,7 +30,7 @@
                                                     message: @"Are you iPhone or iPad?"
                                                    delegate: self
                                           cancelButtonTitle: @"It's a secret."
-                                          otherButtonTitles: @"I'm iPhone.", @"I'm iPod", @"iPad is me.", nil];
+                                          otherButtonTitles: @"I'm iPhone.", @"Oh, I'm iPod.", @"iPad is me.", nil];
     [alert show];
 }
 
