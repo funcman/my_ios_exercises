@@ -25,6 +25,15 @@
                                     <action selector="hello:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qkd-E4-lWV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zs2-Tl-frb">
+                                <rect key="frame" x="16" y="58" width="160" height="30"/>
+                                <state key="normal" title="Ask iOS a question">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ask:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hcx-F8-kkc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
