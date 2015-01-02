@@ -4,4 +4,7 @@
    <FileRef
       location = "group:E1.HelloWorld/E1.HelloWorld.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E2.CalculatorWithNib/E2.CalculatorWithNib.xcodeproj">
+   </FileRef>
 </Workspace>

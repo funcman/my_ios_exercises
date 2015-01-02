@@ -412,6 +412,7 @@
 				311382961A53A85D0004F895 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		311382971A53A85D0004F895 /* Build configuration list for PBXNativeTarget "E1.HelloWorldTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +421,7 @@
 				311382991A53A85D0004F895 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
