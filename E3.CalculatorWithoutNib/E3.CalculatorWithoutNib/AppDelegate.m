@@ -13,7 +13,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     CalculatorViewController *cvc = [[CalculatorViewController alloc] init];
     [self.window setRootViewController:cvc];
-    self.window.backgroundColor = [UIColor blueColor];
+    self.window.backgroundColor = [UIColor colorWithRed:0.1 green:0.3 blue:1.0 alpha:1.0];
     [self.window makeKeyAndVisible];
     return YES;
 }
