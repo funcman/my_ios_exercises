@@ -34,7 +34,7 @@
     [alert show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(![alertView.message isEqualToString:@"Are you iPhone or iPad?"]) return;
     NSString *device = [[UIDevice currentDevice].model substringToIndex:4];
     NSString *words;
