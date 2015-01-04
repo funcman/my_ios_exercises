@@ -13,6 +13,7 @@
 		31CD62F51A5973EF0047E5AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CD62F41A5973EF0047E5AE /* Images.xcassets */; };
 		31CD62F81A5973EF0047E5AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CD62F61A5973EF0047E5AE /* LaunchScreen.xib */; };
 		31CD63041A5973F00047E5AE /* E5_OneAndAHalfPagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD63031A5973F00047E5AE /* E5_OneAndAHalfPagesTests.m */; };
+		31CD630F1A59786D0047E5AE /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD630E1A59786D0047E5AE /* MyScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		31CD62FD1A5973F00047E5AE /* E5.OneAndAHalfPagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E5.OneAndAHalfPagesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CD63021A5973F00047E5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31CD63031A5973F00047E5AE /* E5_OneAndAHalfPagesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E5_OneAndAHalfPagesTests.m; sourceTree = "<group>"; };
+		31CD630D1A59786D0047E5AE /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
+		31CD630E1A59786D0047E5AE /* MyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				31CD62F41A5973EF0047E5AE /* Images.xcassets */,
 				31CD62F61A5973EF0047E5AE /* LaunchScreen.xib */,
 				31CD62E71A5973EF0047E5AE /* Supporting Files */,
+				31CD630D1A59786D0047E5AE /* MyScrollView.h */,
+				31CD630E1A59786D0047E5AE /* MyScrollView.m */,
 			);
 			path = E5.OneAndAHalfPages;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31CD62F01A5973EF0047E5AE /* ViewController.m in Sources */,
+				31CD630F1A59786D0047E5AE /* MyScrollView.m in Sources */,
 				31CD62ED1A5973EF0047E5AE /* AppDelegate.m in Sources */,
 				31CD62EA1A5973EF0047E5AE /* main.m in Sources */,
 			);
