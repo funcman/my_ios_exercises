@@ -14,4 +14,7 @@ This is my iOS exercises.
 撇开IB，手工敲代码组织界面。用到了Auto Layout的FVL。FVL很智能很强大，但写起来会得针眼。总得来说Auto Layout的编辑或编程都不是太方便。
 
 ####4.OpenGLInScrollView
-UIScrollView中嵌入使用由OpenGL做渲染工作的视图。
+UIScrollView中嵌入使用由OpenGL做渲染工作的视图。GLES没有立即模式，不好快速写例子啊。
+
+####5.OneAndAHalfPages
+这是一个稍微复杂一点的，有一定交互趣味的界面DEMO。之后我会加入控制触摸事件响应链的代码。
