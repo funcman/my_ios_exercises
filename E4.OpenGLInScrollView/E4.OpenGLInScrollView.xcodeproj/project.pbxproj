@@ -13,6 +13,7 @@
 		31CD62481A5861F20047E5AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CD62471A5861F20047E5AE /* Images.xcassets */; };
 		31CD624B1A5861F20047E5AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31CD62491A5861F20047E5AE /* LaunchScreen.xib */; };
 		31CD62571A5861F30047E5AE /* E4_OpenGLInScrollViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD62561A5861F30047E5AE /* E4_OpenGLInScrollViewTests.m */; };
+		31CD62621A591EE40047E5AE /* OGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD62611A591EE40047E5AE /* OGLView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		31CD62501A5861F30047E5AE /* E4.OpenGLInScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E4.OpenGLInScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CD62551A5861F30047E5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31CD62561A5861F30047E5AE /* E4_OpenGLInScrollViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E4_OpenGLInScrollViewTests.m; sourceTree = "<group>"; };
+		31CD62601A591EE40047E5AE /* OGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGLView.h; sourceTree = "<group>"; };
+		31CD62611A591EE40047E5AE /* OGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGLView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +84,13 @@
 			children = (
 				31CD623E1A5861F20047E5AE /* AppDelegate.h */,
 				31CD623F1A5861F20047E5AE /* AppDelegate.m */,
-				31CD62411A5861F20047E5AE /* ViewController.h */,
-				31CD62421A5861F20047E5AE /* ViewController.m */,
 				31CD62471A5861F20047E5AE /* Images.xcassets */,
 				31CD62491A5861F20047E5AE /* LaunchScreen.xib */,
+				31CD62601A591EE40047E5AE /* OGLView.h */,
+				31CD62611A591EE40047E5AE /* OGLView.m */,
 				31CD623A1A5861F20047E5AE /* Supporting Files */,
+				31CD62411A5861F20047E5AE /* ViewController.h */,
+				31CD62421A5861F20047E5AE /* ViewController.m */,
 			);
 			path = E4.OpenGLInScrollView;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31CD62431A5861F20047E5AE /* ViewController.m in Sources */,
+				31CD62621A591EE40047E5AE /* OGLView.m in Sources */,
 				31CD62401A5861F20047E5AE /* AppDelegate.m in Sources */,
 				31CD623D1A5861F20047E5AE /* main.m in Sources */,
 			);
@@ -400,6 +406,7 @@
 				31CD625C1A5861F30047E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31CD625D1A5861F30047E5AE /* Build configuration list for PBXNativeTarget "E4.OpenGLInScrollViewTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +415,7 @@
 				31CD625F1A5861F30047E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

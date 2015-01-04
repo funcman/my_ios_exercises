@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "OGLView.h"
 
 @interface ViewController ()
 
@@ -22,8 +23,7 @@ UIPageControl *pc;
     [sv setContentSize:rect.size];
 
     // add two pages: red and green
-    UIView *v1 = [[UIView alloc]initWithFrame:screen];
-    v1.backgroundColor = [UIColor redColor];
+    OGLView* v1 = [[OGLView alloc]initWithFrame:screen];    // background color is red
     [sv addSubview:v1];
     screen.origin.x += screen.size.width;
     UIView *v2 = [[UIView alloc]initWithFrame:screen];
