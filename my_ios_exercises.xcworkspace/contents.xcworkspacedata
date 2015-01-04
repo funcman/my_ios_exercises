@@ -13,4 +13,7 @@
    <FileRef
       location = "group:E4.OpenGLInScrollView/E4.OpenGLInScrollView.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E5.OneAndAHalfPages/E5.OneAndAHalfPages.xcodeproj">
+   </FileRef>
 </Workspace>
