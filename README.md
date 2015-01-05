@@ -17,4 +17,4 @@ This is my iOS exercises.
 UIScrollView中嵌入使用由OpenGL做渲染工作的视图。GLES没有立即模式，不好快速写例子啊。
 
 ####5.OneAndAHalfPages
-这是一个稍微复杂一点的，有一定交互趣味的界面DEMO。之后我会加入控制触摸事件响应链的代码。
+这是一个稍微复杂一点的，有一定交互趣味的界面DEMO。使用hitTest，使界面上半部分的触摸操作不会触发整个界面在垂直方向的滚动。
