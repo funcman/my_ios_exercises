@@ -406,6 +406,7 @@
 				31CD63091A5973F00047E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31CD630A1A5973F00047E5AE /* Build configuration list for PBXNativeTarget "E5.OneAndAHalfPagesTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +415,7 @@
 				31CD630C1A5973F00047E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

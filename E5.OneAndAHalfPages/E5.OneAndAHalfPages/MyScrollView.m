@@ -65,4 +65,14 @@
                                            scroll_view_frame.size.height-scrollView.contentOffset.y)];
 }
 
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView* result = [super hitTest:point withEvent:event];
+    if (result==scroll_view || result==up_view1 || result==up_view2) {
+        self.scrollEnabled = NO;
+    }else {
+        self.scrollEnabled = YES;
+    }
+    return result;
+}
+
 @end
