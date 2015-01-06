@@ -18,3 +18,15 @@ UIScrollView中嵌入使用由OpenGL做渲染工作的视图。GLES没有立即�
 
 ####5.OneAndAHalfPages
 这是一个稍微复杂一点的，有一定交互趣味的界面DEMO。使用hitTest，使界面上半部分的触摸操作不会触发整个界面在垂直方向的滚动。
+
+####6.AnimateZoomingText
+具有动画化缩放效果的文字。
+
+####7.RefreshableTableView
+可下拉获取新数据的列表视图，并且支持滚动至底部时自动加载余下条目的功能。
+
+####8.SimpleOpenGlSprite
+由于OGL ES不支持立即模式，为了方便操作，对OGL ES进行了简单的封装，实现了基本的图片渲染、缩放、3D旋转等功能。
+
+####9.DiaoBaoLe
+碉堡了，不解释。

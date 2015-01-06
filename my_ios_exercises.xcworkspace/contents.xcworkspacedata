@@ -16,4 +16,7 @@
    <FileRef
       location = "group:E5.OneAndAHalfPages/E5.OneAndAHalfPages.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E6.AnimateZoomingText/E6.AnimateZoomingText.xcodeproj">
+   </FileRef>
 </Workspace>
