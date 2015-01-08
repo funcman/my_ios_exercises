@@ -19,4 +19,7 @@
    <FileRef
       location = "group:E6.AnimateZoomingText/E6.AnimateZoomingText.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E7.RefreshableTableView/E7.RefreshableTableView.xcodeproj">
+   </FileRef>
 </Workspace>
