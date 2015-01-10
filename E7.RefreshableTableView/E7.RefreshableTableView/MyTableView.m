@@ -23,8 +23,6 @@
 
         _hack_flag  = NO;
         _hack_y     = 0.0;
-
-        NSLog(@"hhh:%f,%f",self.contentSize.height,self.frame.size.height );
     }
     return self;
 }

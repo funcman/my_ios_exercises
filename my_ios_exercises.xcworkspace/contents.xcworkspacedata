@@ -22,4 +22,7 @@
    <FileRef
       location = "group:E7.RefreshableTableView/E7.RefreshableTableView.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E8.Milestone/E8.Milestone.xcodeproj">
+   </FileRef>
 </Workspace>

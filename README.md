@@ -24,3 +24,6 @@ UIScrollView中嵌入使用由OpenGL做渲染工作的视图。GLES没有立即�
 
 ####7.RefreshableTableView
 可下拉获取新数据的列表视图，并且支持滚动至底部时自动加载余下条目的功能。使用sqlite对数据进行持久化。
+
+####8.Milestone
+一个里程碑DEMO。
