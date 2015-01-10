@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 typedef enum RefreshViewState {
-    IS_READY,
+    READY,
     WILL_LOADING,
     IS_LOADING,
     LOADED,
@@ -12,10 +13,14 @@ typedef enum RefreshViewState {
     float               refreshViewHeight;
     UILabel*            refreshLabel;
     CGAffineTransform   refreshLabelOriginalTransform;
-    RefreshViewState    state;
+    RefreshViewState    upside_state;
+    RefreshViewState    downside_state;
     
-    NSMutableArray*     data;
-    
+    int                 numberOfVisiableRows;
+
+    NSMutableArray*     datetimeItems;
+    int                 maxIdentity;
+
     BOOL    _hack_flag;
     float   _hack_y;
 }

@@ -14,6 +14,8 @@
 		3123F9C01A5BD21800796F39 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3123F9BF1A5BD21800796F39 /* Images.xcassets */; };
 		3123F9C31A5BD21800796F39 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3123F9C11A5BD21800796F39 /* LaunchScreen.xib */; };
 		3123F9CF1A5BD21800796F39 /* E7_RefreshableTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3123F9CE1A5BD21800796F39 /* E7_RefreshableTableViewTests.m */; };
+		31FBF27F1A60148A007B37E8 /* DTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FBF27E1A60148A007B37E8 /* DTItem.m */; };
+		31FBF2811A601F02007B37E8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31FBF2801A601F02007B37E8 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,9 @@
 		3123F9C81A5BD21800796F39 /* E7.RefreshableTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E7.RefreshableTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3123F9CD1A5BD21800796F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3123F9CE1A5BD21800796F39 /* E7_RefreshableTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E7_RefreshableTableViewTests.m; sourceTree = "<group>"; };
+		31FBF27D1A60148A007B37E8 /* DTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTItem.h; sourceTree = "<group>"; };
+		31FBF27E1A60148A007B37E8 /* DTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTItem.m; sourceTree = "<group>"; };
+		31FBF2801A601F02007B37E8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31FBF2811A601F02007B37E8 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +70,7 @@
 		3123F9A61A5BD21800796F39 = {
 			isa = PBXGroup;
 			children = (
+				31FBF2801A601F02007B37E8 /* libsqlite3.dylib */,
 				3123F9B11A5BD21800796F39 /* E7.RefreshableTableView */,
 				3123F9CB1A5BD21800796F39 /* E7.RefreshableTableViewTests */,
 				3123F9B01A5BD21800796F39 /* Products */,
@@ -86,6 +93,8 @@
 				3123F9B71A5BD21800796F39 /* AppDelegate.m */,
 				3123F9B91A5BD21800796F39 /* ViewController.h */,
 				3123F9BA1A5BD21800796F39 /* ViewController.m */,
+				31FBF27D1A60148A007B37E8 /* DTItem.h */,
+				31FBF27E1A60148A007B37E8 /* DTItem.m */,
 				311276311A5D75B000320062 /* MyTableView.h */,
 				311276321A5D75B000320062 /* MyTableView.m */,
 				3123F9BF1A5BD21800796F39 /* Images.xcassets */,
@@ -224,6 +233,7 @@
 				311276331A5D75B000320062 /* MyTableView.m in Sources */,
 				3123F9B81A5BD21800796F39 /* AppDelegate.m in Sources */,
 				3123F9B51A5BD21800796F39 /* main.m in Sources */,
+				31FBF27F1A60148A007B37E8 /* DTItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
