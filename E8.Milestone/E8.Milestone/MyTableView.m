@@ -1,22 +1,25 @@
 #import "MyTableView.h"
+#import <sqlite3.h>
 #import "DTItem.h"
 
 @implementation MyTableView
 
+@synthesize state;
+
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        refreshViewHeight = 40;
-        CGRect rframe = CGRectMake(0, -refreshViewHeight, frame.size.width, refreshViewHeight);
+        cellCustomHeight = 40;
+        CGRect rframe = CGRectMake(0, -cellCustomHeight, frame.size.width, cellCustomHeight);
         [self addRefreshView:rframe];
         self.dataSource = self;
         self.delegate = self;
         upsideState = READY;
-        
+
         datetimeItems = [[NSMutableArray alloc]init];
         [self testDatabase];
         maxIdentity = [self maxIdentityInDatabase];
-        numberOfVisiableRows = self.frame.size.height / refreshViewHeight + 1;
+        numberOfVisiableRows = self.frame.size.height / cellCustomHeight + 1;
         int count = [self numberOfItemsInDatabase];
         int from = (count-numberOfVisiableRows<0) ? 0 : (count-numberOfVisiableRows);
         [datetimeItems addObjectsFromArray:[[[self readDataFrom:from to:count] reverseObjectEnumerator] allObjects]];
@@ -25,6 +28,14 @@
         _hack_y     = 0.0;
     }
     return self;
+}
+
+- (void)addRefreshView:(CGRect)frame {
+    refreshLabel = [[UILabel alloc]initWithFrame:frame];
+    refreshLabel.text = @"Pull down to refresh...";
+    refreshLabel.textAlignment = NSTextAlignmentCenter;
+    refreshLabelOriginalTransform = refreshLabel.transform;
+    [self addSubview:refreshLabel];
 }
 
 - (void)testDatabase {
@@ -103,7 +114,7 @@
         sqlite3* db;
         if (sqlite3_open([path UTF8String], &db)==SQLITE_OK) {
             sqlite3_stmt* statement;
-            NSString* sql = [NSString stringWithFormat:@"SELECT * FROM INFO ORDER BY ID ASC LIMIT %ld OFFSET %ld", to-from, (long)from];
+            NSString* sql = [NSString stringWithFormat:@"SELECT * FROM INFO ORDER BY ID ASC LIMIT %d OFFSET %ld", to-from, (long)from];
             if (sqlite3_prepare_v2(db, [sql UTF8String], -1, &statement, NULL)==SQLITE_OK) {
                 while (sqlite3_step(statement)==SQLITE_ROW) {
                     DTItem* item = [[DTItem alloc]initWithIdentity: (int)sqlite3_column_int(statement, 0)
@@ -144,21 +155,23 @@
     }
 }
 
-- (void)addRefreshView:(CGRect)frame {
-    refreshView = [[UIView alloc]initWithFrame:frame];
-    refreshView.backgroundColor = [UIColor yellowColor];
-    refreshLabel = [[UILabel alloc]initWithFrame:frame];
-    refreshLabel.text = @"Pull down to refresh...";
-    refreshLabel.textAlignment = NSTextAlignmentCenter;
-    refreshLabelOriginalTransform = refreshLabel.transform;
-    [self addSubview:refreshView];
-    [self addSubview:refreshLabel];
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (_hack_flag) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, _hack_y);
         _hack_flag = NO;
+    }
+
+    if (state == UP) {
+        if (scrollView.contentOffset.y < 0.0) {
+            CGPoint p = CGPointMake(scrollView.contentOffset.x, 0);
+            scrollView.contentOffset = p;
+        }
+    }
+    if (state == DW) {
+        if (scrollView.contentOffset.y > 0.0) {
+            CGPoint p = CGPointMake(scrollView.contentOffset.x, 0);
+            scrollView.contentOffset = p;
+        }
     }
 
     if (upsideState == LOADED) {
@@ -170,21 +183,19 @@
         downsideState = READY;
     }
 
-    if (scrollView.contentOffset.y < -refreshViewHeight) {
+    if (scrollView.contentOffset.y < -cellCustomHeight) {
         if (upsideState == READY) {
             refreshLabel.text = @"Release to refresh...";
         }
-        CGRect frame = refreshView.frame;
+        CGRect frame = refreshLabel.frame;
         frame.origin = CGPointMake(frame.origin.x, scrollView.contentOffset.y);
         frame.size = CGSizeMake(frame.size.width, -scrollView.contentOffset.y);
-        refreshView.frame = frame;
         refreshLabel.frame = frame;
     }else {
         if (upsideState == READY) {
             refreshLabel.text = @"Pull down to refresh...";
         }
-        refreshView.frame = CGRectMake(0, -refreshViewHeight, refreshView.frame.size.width, refreshViewHeight);
-        refreshLabel.frame = refreshView.frame;
+        refreshLabel.frame = CGRectMake(0, -cellCustomHeight, refreshLabel.frame.size.width, cellCustomHeight);
     }
 
     if (upsideState == WILL_LOADING) {
@@ -202,10 +213,10 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (scrollView.contentOffset.y < -refreshViewHeight && upsideState==READY) {
+    if (scrollView.contentOffset.y < -cellCustomHeight && upsideState==READY) {
         _hack_flag = YES;
         _hack_y = scrollView.contentOffset.y;
-        scrollView.contentInset = UIEdgeInsetsMake(refreshViewHeight, 0.0f, 0.0f, 0.0f);
+        scrollView.contentInset = UIEdgeInsetsMake(cellCustomHeight, 0.0f, 0.0f, 0.0f);
         upsideState = WILL_LOADING;
     }
 }
@@ -213,27 +224,26 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (downsideState == WILL_LOADING) {
         downsideState = IS_LOADING;
-        NSInteger idx = [self numberOfRowsInSection:0];
-        int count = [self numberOfItemsInDatabase];
-        long from = (count-idx-5<0) ? 0 : (count-idx-5);
-        NSArray* objs = [self readDataFrom:from to:count-idx];
-        objs = [[objs reverseObjectEnumerator] allObjects];
-        NSRange range = NSMakeRange(idx, [objs count]);
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [datetimeItems insertObjects:objs atIndexes:indexSet];
-        NSMutableArray *ips = [[NSMutableArray alloc] init];
-        for (int i = 0; i < objs.count; ++i) {
-            [ips addObject:[NSIndexPath indexPathForRow:idx + i inSection:0]];
-        }
-        if (ips.count > 0) {
-            [self insertRowsAtIndexPaths:ips withRowAnimation:UITableViewRowAnimationNone];
-        }
-        [UIView animateWithDuration:0.3 animations:^{
-            CGPoint p = CGPointMake(self.contentOffset.x, self.contentOffset.y+refreshViewHeight*objs.count);
+        if (datetimeItems.count >= numberOfVisiableRows) {
+            NSInteger idx = [self numberOfRowsInSection:0];
+            int count = [self numberOfItemsInDatabase];
+            long from = (count-idx-5<0) ? 0 : (count-idx-5);
+            NSArray* objs = [self readDataFrom:from to:count-idx];
+            objs = [[objs reverseObjectEnumerator] allObjects];
+            NSRange range = NSMakeRange(idx, [objs count]);
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+            [datetimeItems insertObjects:objs atIndexes:indexSet];
+            NSMutableArray *ips = [[NSMutableArray alloc] init];
+            for (int i = 0; i < objs.count; ++i) {
+                [ips addObject:[NSIndexPath indexPathForRow:idx + i inSection:0]];
+            }
+            CGPoint p = CGPointMake(self.contentOffset.x, self.contentOffset.y+cellCustomHeight*objs.count);
             self.contentOffset = p;
-        }completion:^(BOOL finished) {
-            downsideState = LOADED;
-        }];
+            if (ips.count > 0) {
+                [self insertRowsAtIndexPaths:ips withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+        downsideState = LOADED;
     }
 }
 
@@ -255,16 +265,25 @@
             maxIdentity++;
             DTItem* item = [[DTItem alloc]initWithIdentity:maxIdentity dateTime:[df stringFromDate:[NSDate date]]];
             [datetimeItems insertObject:item atIndex:0];
-            NSIndexPath* ip = [NSIndexPath indexPathForRow:0 inSection:0];
             [self addDatetimeToDatabase:item.dateTime withIdentity:item.identity];
+
+            [self beginUpdates];
+            NSIndexPath* ip;
+            if (datetimeItems.count<=numberOfVisiableRows) {
+                ip = [NSIndexPath indexPathForRow:numberOfVisiableRows-1 inSection:0];
+                [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            ip = [NSIndexPath indexPathForRow:0 inSection:0];
             [self insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationBottom];
+            [self endUpdates];
+
             upsideState = LOADED;
         }];
     }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return datetimeItems.count;
+    return datetimeItems.count>=numberOfVisiableRows ? datetimeItems.count : numberOfVisiableRows;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -273,35 +292,29 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell.textLabel setText:[NSString stringWithFormat:@"Recorded at %@", [[datetimeItems objectAtIndex:[indexPath row]]dateTime]]];
+    if (datetimeItems.count < numberOfVisiableRows && [indexPath row] >= datetimeItems.count) {
+        [cell.textLabel setText:@""];
+    }else {
+        [cell.textLabel setText:[NSString stringWithFormat:@"Recorded at %@", [[datetimeItems objectAtIndex:[indexPath row]]dateTime]]];
+    }
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return refreshViewHeight;
+    return cellCustomHeight;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self deleteDataWithIdentity:[(DTItem*)[datetimeItems objectAtIndex:[indexPath row]]identity]];
-        [datetimeItems removeObjectAtIndex:[indexPath row]];
-        [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        if (datetimeItems.count < numberOfVisiableRows) {
-            NSInteger idx = [self numberOfRowsInSection:0];
-            int count = [self numberOfItemsInDatabase];
-            long from = count-idx-1<0?0:count-idx-1;
-            NSArray* objs = [self readDataFrom:from to:count-idx];
-            if (objs.count) {
-                [datetimeItems insertObject:[objs objectAtIndex:0] atIndex:idx];
-                NSIndexPath* ip = [NSIndexPath indexPathForRow:idx inSection:0];
-                [self insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-        }
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (![gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) return YES;
+    CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self];
+    if (velocity.y >= 0 && state == UP && self.contentOffset.y <=0 ) {
+        return NO;
+    }else if(velocity.y <= 0 && state == DW){
+        return NO;
     }
-}
-
-- (NSString*)tableView:(UITableView*)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath*)indexpath {
-    return @"Pass";
+    return YES;
 }
 
 @end

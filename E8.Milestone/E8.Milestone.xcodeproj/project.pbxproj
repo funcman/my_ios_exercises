@@ -13,6 +13,9 @@
 		31F5624E1A60FF30007A9AE3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F5624D1A60FF30007A9AE3 /* Images.xcassets */; };
 		31F562511A60FF30007A9AE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F5624F1A60FF30007A9AE3 /* LaunchScreen.xib */; };
 		31F5625D1A60FF30007A9AE3 /* E8_MilestoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5625C1A60FF30007A9AE3 /* E8_MilestoneTests.m */; };
+		31F562681A610A5C007A9AE3 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F562671A610A5C007A9AE3 /* MyTableView.m */; };
+		31F5626B1A610EF8007A9AE3 /* DTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5626A1A610EF8007A9AE3 /* DTItem.m */; };
+		31F5626D1A6116FF007A9AE3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F5626C1A6116FF007A9AE3 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,11 @@
 		31F562561A60FF30007A9AE3 /* E8.MilestoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E8.MilestoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F5625B1A60FF30007A9AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F5625C1A60FF30007A9AE3 /* E8_MilestoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E8_MilestoneTests.m; sourceTree = "<group>"; };
+		31F562661A610A5C007A9AE3 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
+		31F562671A610A5C007A9AE3 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
+		31F562691A610EF8007A9AE3 /* DTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTItem.h; sourceTree = "<group>"; };
+		31F5626A1A610EF8007A9AE3 /* DTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTItem.m; sourceTree = "<group>"; };
+		31F5626C1A6116FF007A9AE3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F5626D1A6116FF007A9AE3 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +70,7 @@
 		31F562341A60FF30007A9AE3 = {
 			isa = PBXGroup;
 			children = (
+				31F5626C1A6116FF007A9AE3 /* libsqlite3.dylib */,
 				31F5623F1A60FF30007A9AE3 /* E8.Milestone */,
 				31F562591A60FF30007A9AE3 /* E8.MilestoneTests */,
 				31F5623E1A60FF30007A9AE3 /* Products */,
@@ -79,10 +89,14 @@
 		31F5623F1A60FF30007A9AE3 /* E8.Milestone */ = {
 			isa = PBXGroup;
 			children = (
+				31F562691A610EF8007A9AE3 /* DTItem.h */,
+				31F5626A1A610EF8007A9AE3 /* DTItem.m */,
 				31F562441A60FF30007A9AE3 /* AppDelegate.h */,
 				31F562451A60FF30007A9AE3 /* AppDelegate.m */,
 				31F562471A60FF30007A9AE3 /* ViewController.h */,
 				31F562481A60FF30007A9AE3 /* ViewController.m */,
+				31F562661A610A5C007A9AE3 /* MyTableView.h */,
+				31F562671A610A5C007A9AE3 /* MyTableView.m */,
 				31F5624D1A60FF30007A9AE3 /* Images.xcassets */,
 				31F5624F1A60FF30007A9AE3 /* LaunchScreen.xib */,
 				31F562401A60FF30007A9AE3 /* Supporting Files */,
@@ -216,8 +230,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F562491A60FF30007A9AE3 /* ViewController.m in Sources */,
+				31F562681A610A5C007A9AE3 /* MyTableView.m in Sources */,
 				31F562461A60FF30007A9AE3 /* AppDelegate.m in Sources */,
 				31F562431A60FF30007A9AE3 /* main.m in Sources */,
+				31F5626B1A610EF8007A9AE3 /* DTItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

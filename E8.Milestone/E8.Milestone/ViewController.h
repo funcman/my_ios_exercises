@@ -1,7 +1,14 @@
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@class MyTableView;
 
+@interface ViewController : UIViewController {
+    UIView*         panView;
+    MyTableView*    tableView;
+    float           tableViewOriginY;
+    float           tableViewHeight;
+    float           tempOriginY;
+    UIPanGestureRecognizer* panGesture;
+}
 
 @end
-

@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
-#import <sqlite3.h>
+
+typedef enum MyTableViewState {
+    UP,
+    DW,
+} MyTableViewState;
 
 typedef enum RefreshViewState {
     READY,
@@ -9,20 +13,23 @@ typedef enum RefreshViewState {
 } RefreshViewState;
 
 @interface MyTableView : UITableView<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource> {
-    UIView*             refreshView;
-    float               refreshViewHeight;
-    UILabel*            refreshLabel;
-    CGAffineTransform   refreshLabelOriginalTransform;
+    MyTableViewState    state;
     RefreshViewState    upsideState;
     RefreshViewState    downsideState;
-    
+
+    UILabel*            refreshLabel;
+    CGAffineTransform   refreshLabelOriginalTransform;
+
+    float               cellCustomHeight;
     int                 numberOfVisiableRows;
 
     NSMutableArray*     datetimeItems;
     int                 maxIdentity;
 
-    BOOL    _hack_flag;
-    float   _hack_y;
+    BOOL                _hack_flag;
+    float               _hack_y;
 }
+
+@property MyTableViewState state;
 
 @end
