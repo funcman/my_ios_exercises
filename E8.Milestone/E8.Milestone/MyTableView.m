@@ -65,7 +65,7 @@
 }
 
 - (int)maxIdentityInDatabase {
-    int result = maxIdentity;
+    int result = 0;
     NSString* documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* path = [documents stringByAppendingPathComponent:@"data.s3db"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path] == YES) {
@@ -85,8 +85,29 @@
     return result;
 }
 
+- (int)minIdentityInDatabase {
+    int result = 0;
+    NSString* documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* path = [documents stringByAppendingPathComponent:@"data.s3db"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path] == YES) {
+        sqlite3* db;
+        if (sqlite3_open([path UTF8String], &db)==SQLITE_OK) {
+            sqlite3_stmt *statement;
+            char* sql = "SELECT MIN(ID) FROM INFO";
+            if (sqlite3_prepare_v2(db, sql, -1, &statement, 0)==SQLITE_OK) {
+                if (sqlite3_step(statement)==SQLITE_ROW) {
+                    result = (int)sqlite3_column_int(statement, 0);
+                }
+                sqlite3_finalize(statement);
+            }
+        }
+        sqlite3_close(db);
+    }
+    return result;
+}
+
 - (int)numberOfItemsInDatabase {
-    int result = maxIdentity;
+    int result = 0;
     NSString* documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* path = [documents stringByAppendingPathComponent:@"data.s3db"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path] == YES) {
@@ -268,13 +289,27 @@
             [self addDatetimeToDatabase:item.dateTime withIdentity:item.identity];
 
             [self beginUpdates];
+
             NSIndexPath* ip;
+
             if (datetimeItems.count<=numberOfVisiableRows) {
                 ip = [NSIndexPath indexPathForRow:numberOfVisiableRows-1 inSection:0];
                 [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
             }
+
+            if (datetimeItems.count > numberOfVisiableRows*3) {
+                [self deleteDataWithIdentity:[(DTItem*)[datetimeItems objectAtIndex:numberOfVisiableRows*3]identity]];
+                [datetimeItems removeObjectAtIndex:numberOfVisiableRows*3];
+                ip = [NSIndexPath indexPathForRow:numberOfVisiableRows*3-1 inSection:0];
+                [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            while ([self numberOfItemsInDatabase] > numberOfVisiableRows*3) {
+                [self deleteDataWithIdentity:[self minIdentityInDatabase]];
+            }
+
             ip = [NSIndexPath indexPathForRow:0 inSection:0];
             [self insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:UITableViewRowAnimationBottom];
+
             [self endUpdates];
 
             upsideState = LOADED;
