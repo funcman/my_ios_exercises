@@ -19,6 +19,7 @@
 
     scrollView = [[MyScrollView alloc]initWithFrame:CGRectMake(0, 20, frame.size.width, tableViewOriginY-20)];
     [view addSubview:scrollView];
+    [scrollView addPageControlToView:view withY:tableViewOriginY];
 
     panView = [[UIView alloc]initWithFrame:CGRectMake(frame.origin.x, tableViewOriginY, frame.size.width, frame.size.height-tableViewOriginY)];
     tableView = [[MyTableView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, tableViewHeight)];

@@ -7,8 +7,6 @@
 
 @implementation ViewController
 
-UIPageControl *pc;
-
 - (void)loadView {
     CGRect screen = [[UIScreen mainScreen] bounds];
     CGRect rect = screen;
@@ -37,12 +35,12 @@ UIPageControl *pc;
     // add the page control
     CGSize sizePageControl = CGSizeMake(120, 40);
     CGRect framePageControl = CGRectMake((screen.size.width-sizePageControl.width)/2, (screen.size.height-sizePageControl.height-10), sizePageControl.width, sizePageControl.height);
-    pc = [[UIPageControl alloc]initWithFrame:framePageControl];
-    pc.hidesForSinglePage = YES;
-    pc.userInteractionEnabled = NO;
-    pc.backgroundColor = [UIColor clearColor];
-    pc.numberOfPages = 2;
-    [v addSubview:pc];
+    pageControl = [[UIPageControl alloc]initWithFrame:framePageControl];
+    pageControl.hidesForSinglePage = YES;
+    pageControl.userInteractionEnabled = NO;
+    pageControl.backgroundColor = [UIColor clearColor];
+    pageControl.numberOfPages = 2;
+    [v addSubview:pageControl];
 }
 
 - (void)viewDidLoad {
@@ -57,7 +55,7 @@ UIPageControl *pc;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView*)scrollView {
     int index = fabs(scrollView.contentOffset.x)/self.view.frame.size.width;
-    pc.currentPage = index;
+    pageControl.currentPage = index;
 }
 
 @end
