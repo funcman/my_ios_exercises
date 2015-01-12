@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "MyScrollView.h"
 #import "MyTableView.h"
 
 @interface ViewController ()
@@ -13,7 +14,11 @@
     tableViewOriginY = frame.size.height * 0.6;
 
     UIView* view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = [UIColor whiteColor];
     [self setView:view];
+
+    scrollView = [[MyScrollView alloc]initWithFrame:CGRectMake(0, 20, frame.size.width, tableViewOriginY-20)];
+    [view addSubview:scrollView];
 
     panView = [[UIView alloc]initWithFrame:CGRectMake(frame.origin.x, tableViewOriginY, frame.size.width, frame.size.height-tableViewOriginY)];
     tableView = [[MyTableView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, tableViewHeight)];
@@ -43,30 +48,42 @@
 
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
+            tempOriginHeight = scrollView.frame.size.height;
             tempOriginY = panView.frame.origin.y;
         }break;
         case UIGestureRecognizerStateChanged: {
             if (tempOriginY+translation.y >= frame.size.height-tableViewHeight && tempOriginY+translation.y <= tableViewOriginY) {
-                CGRect f = panView.frame;
+                CGRect f = scrollView.frame;
+                f.size = CGSizeMake(f.size.width, tempOriginHeight + translation.y);
+                scrollView.frame = f;
+                [scrollView updateSubSize];
+                f = panView.frame;
                 f.origin = CGPointMake(0, tempOriginY + translation.y);
                 panView.frame = f;
             }
         }break;
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled: {
-            CGPoint p = panView.frame.origin;
-            CGSize s;
+            CGSize ss = scrollView.frame.size;
+            CGPoint po = panView.frame.origin;
+            CGSize ps;
             if (velocity.y >= 0) {
-                p.y = tableViewOriginY;
-                s = CGSizeMake(panView.frame.size.width, frame.size.height-tableViewOriginY);
+                ss.height = tableViewOriginY-20;
+                po.y = tableViewOriginY;
+                ps = CGSizeMake(panView.frame.size.width, frame.size.height-tableViewOriginY);
             }else {
-                p.y = frame.size.height-tableViewHeight;
-                s = CGSizeMake(panView.frame.size.width, tableViewHeight);
+                ss.height = frame.size.height-tableViewHeight-20;
+                po.y = frame.size.height-tableViewHeight;
+                ps = CGSizeMake(panView.frame.size.width, tableViewHeight);
             }
             [UIView animateWithDuration:0.2 animations:^{
-                CGRect f = panView.frame;
-                f.origin = p;
-                f.size = s;
+                CGRect f = scrollView.frame;
+                f.size = ss;
+                scrollView.frame = f;
+                [scrollView updateSubSize];
+                f = panView.frame;
+                f.origin = po;
+                f.size = ps;
                 panView.frame = f;
             }completion:^(BOOL finished){
                 if (panView.frame.origin.y == tableViewOriginY) {

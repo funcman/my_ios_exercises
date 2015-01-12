@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3135DFDE1A638C9F00AF6CF9 /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3135DFDD1A638C9F00AF6CF9 /* MyScrollView.m */; };
+		3135DFE01A63BD3800AF6CF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3135DFDF1A63BD3800AF6CF9 /* Images.xcassets */; };
 		31F562431A60FF30007A9AE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F562421A60FF30007A9AE3 /* main.m */; };
 		31F562461A60FF30007A9AE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F562451A60FF30007A9AE3 /* AppDelegate.m */; };
 		31F562491A60FF30007A9AE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F562481A60FF30007A9AE3 /* ViewController.m */; };
-		31F5624E1A60FF30007A9AE3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F5624D1A60FF30007A9AE3 /* Images.xcassets */; };
 		31F562511A60FF30007A9AE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31F5624F1A60FF30007A9AE3 /* LaunchScreen.xib */; };
 		31F5625D1A60FF30007A9AE3 /* E8_MilestoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5625C1A60FF30007A9AE3 /* E8_MilestoneTests.m */; };
 		31F562681A610A5C007A9AE3 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F562671A610A5C007A9AE3 /* MyTableView.m */; };
@@ -29,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3135DFDC1A638C9F00AF6CF9 /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
+		3135DFDD1A638C9F00AF6CF9 /* MyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
+		3135DFDF1A63BD3800AF6CF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31F5623D1A60FF30007A9AE3 /* E8.Milestone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = E8.Milestone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F562411A60FF30007A9AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31F562421A60FF30007A9AE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -36,7 +40,6 @@
 		31F562451A60FF30007A9AE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		31F562471A60FF30007A9AE3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		31F562481A60FF30007A9AE3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		31F5624D1A60FF30007A9AE3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31F562501A60FF30007A9AE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		31F562561A60FF30007A9AE3 /* E8.MilestoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E8.MilestoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31F5625B1A60FF30007A9AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,10 +98,12 @@
 				31F562451A60FF30007A9AE3 /* AppDelegate.m */,
 				31F562471A60FF30007A9AE3 /* ViewController.h */,
 				31F562481A60FF30007A9AE3 /* ViewController.m */,
+				3135DFDC1A638C9F00AF6CF9 /* MyScrollView.h */,
+				3135DFDD1A638C9F00AF6CF9 /* MyScrollView.m */,
 				31F562661A610A5C007A9AE3 /* MyTableView.h */,
 				31F562671A610A5C007A9AE3 /* MyTableView.m */,
-				31F5624D1A60FF30007A9AE3 /* Images.xcassets */,
 				31F5624F1A60FF30007A9AE3 /* LaunchScreen.xib */,
+				3135DFDF1A63BD3800AF6CF9 /* Images.xcassets */,
 				31F562401A60FF30007A9AE3 /* Supporting Files */,
 			);
 			path = E8.Milestone;
@@ -211,7 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31F562511A60FF30007A9AE3 /* LaunchScreen.xib in Resources */,
-				31F5624E1A60FF30007A9AE3 /* Images.xcassets in Resources */,
+				3135DFE01A63BD3800AF6CF9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +239,7 @@
 				31F562461A60FF30007A9AE3 /* AppDelegate.m in Sources */,
 				31F562431A60FF30007A9AE3 /* main.m in Sources */,
 				31F5626B1A610EF8007A9AE3 /* DTItem.m in Sources */,
+				3135DFDE1A638C9F00AF6CF9 /* MyScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +422,7 @@
 				31F562621A60FF30007A9AE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31F562631A60FF30007A9AE3 /* Build configuration list for PBXNativeTarget "E8.MilestoneTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +431,7 @@
 				31F562651A60FF30007A9AE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
