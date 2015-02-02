@@ -38,10 +38,18 @@
                                     <action selector="switchMeter:" destination="vXZ-lx-hvc" eventType="valueChanged" id="GX8-bw-SNh"/>
                                 </connections>
                             </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJB-ER-Z2J">
+                                <rect key="frame" x="16" y="85" width="211" height="380"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="logView" destination="lJB-ER-Z2J" id="dmM-FH-3v2"/>
                         <outlet property="meter" destination="Bsm-kU-PPS" id="35Z-Zs-RZR"/>
                         <outlet property="numOfSteps" destination="Yey-p9-lCk" id="4Bw-LF-rZr"/>
                     </connections>

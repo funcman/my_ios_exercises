@@ -8,6 +8,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *numOfSteps;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *meter;
+@property (weak, nonatomic) IBOutlet UITextView *logView;
 
 @end
 
@@ -40,31 +41,40 @@
 }
 
 - (void)installStepCounter {
-    NSLog(@"Use CMStepCounter.");
+    [self appendLog:@"Use CMStepCounter."];
     [pedometer stopPedometerUpdates];
     stepCounter = [[CMStepCounter alloc]init];
     [stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue] updateOn:0 withHandler:^(NSInteger numberOfSteps, NSDate* timestamp, NSError* error) {
         if (!error) {
             [self showNum:[NSNumber numberWithInteger:numberOfSteps]];
-            NSLog(@"CMStepCounter update: %@ steps now.", self.numOfSteps.text);
+            [self appendLog:[NSString stringWithFormat:@"StepCounter update: %@ steps now.", self.numOfSteps.text]];
         }
     }];
 }
 
 - (void)installPedometer {
-    NSLog(@"Use CMPedometer.");
+    [self appendLog:@"Use CMPedometer."];
     [stepCounter stopStepCountingUpdates];
     pedometer = [[CMPedometer alloc]init];
     [pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData* data, NSError* error){
         if (!error) {
             [self performSelectorOnMainThread:@selector(showNum:) withObject:data.numberOfSteps waitUntilDone:YES];
-            NSLog(@"CMPedometer update: %@ steps now.", self.numOfSteps.text);
-        }
+            [self appendLog:[NSString stringWithFormat:@"Pedometer update: %@ steps now.", self.numOfSteps.text]];        }
     }];
 }
 
 - (void)showNum:(NSNumber*)number {
     self.numOfSteps.text = [number stringValue];
+}
+
+- (void)appendLog:(NSString*)log {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"HH:mm:ss:SSS"];
+        NSString *curTimeStr = [dateFormatter stringFromDate:[NSDate date]];
+        NSLog(@"%@", log);
+        self.logView.text = [NSString stringWithFormat:@"%@: %@\n%@", curTimeStr, log, self.logView.text];
+    });
 }
 
 @end
