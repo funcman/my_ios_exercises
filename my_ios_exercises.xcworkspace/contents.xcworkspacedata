@@ -25,4 +25,7 @@
    <FileRef
       location = "group:E8.Milestone/E8.Milestone.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:E9.CoreMotionDemo/E9.CoreMotionDemo.xcodeproj">
+   </FileRef>
 </Workspace>
