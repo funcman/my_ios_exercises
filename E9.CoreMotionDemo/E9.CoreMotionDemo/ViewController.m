@@ -52,6 +52,10 @@
 }
 
 - (void)installStepCounter {
+    if (![CMStepCounter isStepCountingAvailable]) {
+        [self appendLog:@"CMStepCounter is unavailable."];
+        return;
+    }
     [self appendLog:@"Use CMStepCounter."];
     [pedometer stopPedometerUpdates];
     stepCounter = [[CMStepCounter alloc]init];
@@ -64,6 +68,10 @@
 }
 
 - (void)installPedometer {
+    if (![CMPedometer isStepCountingAvailable]) {
+        [self appendLog:@"CMPedometer is unavailable."];
+        return;
+    }
     [self appendLog:@"Use CMPedometer."];
     [stepCounter stopStepCountingUpdates];
     pedometer = [[CMPedometer alloc]init];
@@ -76,6 +84,10 @@
 }
 
 - (void)installActivityManager {
+    if (![CMMotionActivityManager isActivityAvailable]) {
+        [self appendLog:@"CMMotionActivityManager is unavailable."];
+        return;
+    }
     [self appendLog:@"CMActivityManager start."];
     activityManager = [[CMMotionActivityManager alloc]init];
     [activityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMMotionActivity* activity) {
@@ -100,6 +112,10 @@
 }
 
 - (void)installAltimeter {
+    if (![CMAltimeter isRelativeAltitudeAvailable]) {
+        [self appendLog:@"CMAltimeter is unavailable."];
+        return;
+    }
     [self appendLog:@"CMAltimeter start."];
     altimeter = [[CMAltimeter alloc]init];
     [altimeter startRelativeAltitudeUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAltitudeData *altitudeData, NSError *error) {
