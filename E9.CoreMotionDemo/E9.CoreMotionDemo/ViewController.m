@@ -5,10 +5,13 @@
     CMStepCounter*              stepCounter;
     CMPedometer*                pedometer;
     CMMotionActivityManager*    activityManager;
+    CMAltimeter*                altimeter;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *numOfSteps;
 @property (weak, nonatomic) IBOutlet UILabel *activity;
+@property (weak, nonatomic) IBOutlet UILabel *altitude;
+@property (weak, nonatomic) IBOutlet UILabel *presure;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *meter;
 @property (weak, nonatomic) IBOutlet UITextView *logView;
 
@@ -25,6 +28,8 @@
     [self installStepCounter];
 
     [self installActivityManager];
+    
+    [self installAltimeter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +57,7 @@
     stepCounter = [[CMStepCounter alloc]init];
     [stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue] updateOn:0 withHandler:^(NSInteger numberOfSteps, NSDate* timestamp, NSError* error) {
         if (!error) {
-            [self showNum:[NSNumber numberWithInteger:numberOfSteps]];
+            [self showNumOfSteps:[NSNumber numberWithInteger:numberOfSteps]];
             [self appendLog:[NSString stringWithFormat:@"StepCounter update: %@ steps now.", self.numOfSteps.text]];
         }
     }];
@@ -94,7 +99,19 @@
     }];
 }
 
-- (void)showNum:(NSNumber*)number {
+- (void)installAltimeter {
+    [self appendLog:@"CMAltimeter start."];
+    altimeter = [[CMAltimeter alloc]init];
+    [altimeter startRelativeAltitudeUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAltitudeData *altitudeData, NSError *error) {
+        if (!error) {
+            self.altitude.text = [altitudeData.relativeAltitude stringValue];
+            self.presure.text = [altitudeData.pressure stringValue];
+            [self appendLog:[NSString stringWithFormat:@"RelativeAltitude:%@ Presure:%@", self.altitude.text, self.presure.text]];
+        }
+    }];
+}
+
+- (void)showNumOfSteps:(NSNumber*)number {
     self.numOfSteps.text = [number stringValue];
 }
 
