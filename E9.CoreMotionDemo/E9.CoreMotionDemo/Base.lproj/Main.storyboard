@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,30 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CA-xd-Qmb">
-                                <rect key="frame" x="16" y="20" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CA-xd-Qmb">
+                                <rect key="frame" x="16" y="30" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yey-p9-lCk">
-                                <rect key="frame" x="66" y="20" width="161" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yey-p9-lCk">
+                                <rect key="frame" x="67" y="30" width="60" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="kLO-HT-ZPr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bsm-kU-PPS">
-                                <rect key="frame" x="16" y="49" width="211" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bsm-kU-PPS">
+                                <rect key="frame" x="16" y="59" width="568" height="29"/>
                                 <segments>
                                     <segment title="CMStepCounter"/>
                                     <segment title="CMPedometer"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="switchMeter:" destination="vXZ-lx-hvc" eventType="valueChanged" id="GX8-bw-SNh"/>
                                 </connections>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJB-ER-Z2J">
-                                <rect key="frame" x="16" y="85" width="211" height="380"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJB-ER-Z2J">
+                                <rect key="frame" x="16" y="97" width="568" height="487"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
@@ -47,6 +52,19 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yey-p9-lCk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="7OF-Ac-8bk"/>
+                            <constraint firstItem="2CA-xd-Qmb" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="DDA-1a-SP9"/>
+                            <constraint firstItem="2CA-xd-Qmb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="RSG-in-r33"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lJB-ER-Z2J" secondAttribute="trailing" id="UZl-B9-IH5"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lJB-ER-Z2J" secondAttribute="bottom" constant="16" id="Usl-7q-N3a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bsm-kU-PPS" secondAttribute="trailing" id="VmR-g0-g0o"/>
+                            <constraint firstItem="Bsm-kU-PPS" firstAttribute="top" secondItem="2CA-xd-Qmb" secondAttribute="bottom" constant="8" id="YC4-yV-UoD"/>
+                            <constraint firstItem="Bsm-kU-PPS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="cLT-5R-x7Y"/>
+                            <constraint firstItem="Yey-p9-lCk" firstAttribute="leading" secondItem="2CA-xd-Qmb" secondAttribute="trailing" constant="10" id="cZk-cc-v3O"/>
+                            <constraint firstItem="lJB-ER-Z2J" firstAttribute="top" secondItem="Bsm-kU-PPS" secondAttribute="bottom" constant="10" id="gep-NQ-3hk"/>
+                            <constraint firstItem="lJB-ER-Z2J" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="uLG-fJ-qFI"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="logView" destination="lJB-ER-Z2J" id="dmM-FH-3v2"/>
