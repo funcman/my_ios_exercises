@@ -120,8 +120,8 @@
     altimeter = [[CMAltimeter alloc]init];
     [altimeter startRelativeAltitudeUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAltitudeData *altitudeData, NSError *error) {
         if (!error) {
-            self.altitude.text = [altitudeData.relativeAltitude stringValue];
-            self.presure.text = [altitudeData.pressure stringValue];
+            self.altitude.text  = [NSString stringWithFormat:@"%0.2f", [altitudeData.relativeAltitude doubleValue]];
+            self.presure.text   = [NSString stringWithFormat:@"%0.2f", [altitudeData.pressure doubleValue]];
             [self appendLog:[NSString stringWithFormat:@"RelativeAltitude:%@ Presure:%@", self.altitude.text, self.presure.text]];
         }
     }];
